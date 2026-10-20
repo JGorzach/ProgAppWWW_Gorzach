@@ -1,0 +1,5 @@
+* {box-sizing: border-box; }
+body { background-color: #FEFEFE;}
+header {text-align: center;}
+#galeria {display: grid;
+           grid-template-columns: re;}
