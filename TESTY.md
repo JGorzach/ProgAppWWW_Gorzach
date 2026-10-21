@@ -6,3 +6,4 @@ Walidacja: nie pozwala wysłac formularza jeżeli nie bedzie on spełniał każd
 ?e-mail=sghadajd%40dont.care&produkt=Hotel&ilosc=5&wiadomosc=1daiughfk%2Casghlskah
 Eksperyment:nie pojawiło sie w adresie URL po wysłaniu, ponieważ w adresie jest to wyswietlane za wartoscia pola name:
 ?produkt=Hotel&ilosc=1&wiadomosc=qwesfdhshs
+Screen z metoda GET w katalogu screenshot/lab1
