@@ -51,4 +51,28 @@ start.addEventListener('click',startZegar);
 stop.addEventListener('click', stopZegar);
 piszCzas();
 
-//
+//Filtrowanie produktów bez przeładowania
+const wyszukiwanie = document.querySelector('input[type="search"]');
+const karty = document.querySelectorAll('.card');
+const iloscWyszukan = document.getElementById('wyszukiwarkaZnalezione');
+wyszukiwanie.addEventListener('input', (event) =>{
+    const szukanyElement = event.target.value.trim().toLowerCase();
+    let widocznych = 0;
+    karty.forEach(card => {
+        const nazwaProduktu = card.querySelector('h3').textContent.toLowerCase();
+    
+    if (nazwaProduktu.includes(szukanyElement)){
+        card.hidden = false;
+        widocznych++;
+    }
+    else{
+        card.hidden = true;
+    }
+    });
+    if (widocznych === 0){
+        iloscWyszukan.textContent = "Brak wyników.";
+    }
+    else{
+        iloscWyszukan.textContent=`Znaleziono: ${widocznych}`
+    }
+});

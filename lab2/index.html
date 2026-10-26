@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="pl">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,23 @@
         <link rel="stylesheet" href="css/style.css">
         <script src="js/main.js" defer></script>
     </head>
+
     <body>
         <header>
-            <h1>Naglowek</h1>
+            <h1>Sklep z albumami muzycznymi</h1>
         </header>
+
         <nav>
             <a href="index.html" aria-current="page">Ta strona</a> 
             <a href="kontakt.html">Kontakt</a> 
             <a href="produkty.html">Produkty</a>
         </nav>
+
         <main class="container">
-            <h2>cos tam cos tam</h2>
+            <h2>Wielki (jeżeli 3 uważamy za wielki) zbiór płyt do wyboru</h2>
+            <label for="wyszukiwarka">Znajdź produkt:</label>
+            <input type="search" id="wyszukiwarka" placeholder="Wyszukaj na stronie: "></input>
+            <div id="wyszukiwarkaZnalezione" aria-live="polite"></div>
         <div class="catalog">
         <article class="card">
             <h3>Plyta CD AM &quot;The Car&quot;</h3>
@@ -39,6 +46,7 @@
         </article>
         </div>
         </main>
+
         <footer>
             <small>A to jest stopka&copy;</small>
             <input type="button" id="DarkMode" value="Tryb Ciemny"></input>

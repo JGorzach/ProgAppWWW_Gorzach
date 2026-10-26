@@ -14,9 +14,11 @@
     --secondary-color: #3a79c0;
     --font-color: #ffffff;
 }
-
+[hidden]{
+    display: none !important;
+}
 * {
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 body { 
     background-color: var(--primary-color);
