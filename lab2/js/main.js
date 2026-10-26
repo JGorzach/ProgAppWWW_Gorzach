@@ -1,6 +1,6 @@
 //Zmiana trybu jasny/ciemny
-const button = document.querySelector("input");
-const r = document.querySelector(':root');
+const button = document.getElementById('DarkMode');
+const r = document.documentElement;
 let currenMode = localStorage.getItem("Mode")||"Tryb Jasny";
 applyTheme(currenMode);
 button.addEventListener("click",() => {
@@ -16,13 +16,39 @@ button.addEventListener("click",() => {
 function applyTheme(mode){
     if (mode === "Tryb Ciemny"){
         button.value = "Tryb Jasny";
-        r.style.setProperty('--primary-color','#181818');
-        r.style.setProperty('--secondary-color','#3a79c0');
-        r.style.setProperty('--font-color', '#ffffff');
+        r.setAttribute("data-theme","dark");
     } else{
         button.value = "Tryb Ciemny";
-        r.style.setProperty('--primary-color','#f8f8f8');
-        r.style.setProperty('--secondary-color','#0056b3');
-        r.style.setProperty('--font-color', '#000000');
+        r.setAttribute("data-theme","light");
     }
 }
+
+//zegar
+let zegar = null;
+const start = document.getElementById('start');
+const stop = document.getElementById('stop');
+let options = {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric"
+}
+function piszCzas(){
+    let d = new Date();
+    let d1 = new Intl.DateTimeFormat("pl-PL", options).format(d);
+    document.getElementById("zegar").innerHTML= d1;
+}
+function startZegar(){
+    if(zegar === null){
+        piszCzas();
+        zegar = setInterval(piszCzas,1000);
+    }
+}
+function stopZegar(){
+    clearInterval(zegar);
+    zegar = null;
+}
+start.addEventListener('click',startZegar);
+stop.addEventListener('click', stopZegar);
+piszCzas();
+
+//
