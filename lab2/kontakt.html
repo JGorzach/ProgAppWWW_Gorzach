@@ -18,7 +18,7 @@
             <a href="produkty.html">Produkty</a>
         </nav>
         <main>
-            <form action="kontakt.html" method="get">
+            <form action="kontakt.html" method="get" id="formularz">
                 <label for="mail">WYMAGANE Wpisz tutaj swoj mail</label>
                 <input id="mail" type="email" name="e-mail" placeholder="Podaj e-mail" required>
                 <label for="produkt">WYMAGANE Wybierz ktory produkt chcesz kupić</label>
@@ -29,10 +29,12 @@
                     <option value="Demons_Days">Demon Days</option>
                 </select>
                 <label for="number">WYMAGANE Wpisz ilosc produktow od 1 do 5</label>
-                <input id="number" type="number" name="ilosc" required min="1" max="5" step="1">
+                <input id="number" type="number" name="number" required min="1" max="5" step="1">
                 <label for="wiadomosc">WYMAGANE Wpisz tutaj swoja wiadomosc conajmniej 10 znaków</label>
                 <textarea id="wiadomosc" name="wiadomosc" required minlength="10" maxlength="500"></textarea>
                 <button type="submit">Sprawdź zapytanie</button>
+                <p>Cena: </p>
+                <div id="cena"></div>
             </form>
         </main>
 

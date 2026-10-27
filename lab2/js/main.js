@@ -55,6 +55,7 @@ piszCzas();
 const wyszukiwanie = document.querySelector('input[type="search"]');
 const karty = document.querySelectorAll('.card');
 const iloscWyszukan = document.getElementById('wyszukiwarkaZnalezione');
+if(wyszukiwanie){
 wyszukiwanie.addEventListener('input', (event) =>{
     const szukanyElement = event.target.value.trim().toLowerCase();
     let widocznych = 0;
@@ -76,3 +77,61 @@ wyszukiwanie.addEventListener('input', (event) =>{
         iloscWyszukan.textContent=`Znaleziono: ${widocznych}`
     }
 });
+}
+//Oblicz wartosc i pokaz podsumowanie
+const tablicaProduktów = [
+    {
+        id: "The_Car",
+        nazwa: "The Car",
+        cenaGrosze: 5999
+    },
+    {
+        id: "Hotel",
+        nazwa: "Tranquility Base Hotel and Casino",
+        cenaGrosze: 3999
+    },
+    {
+        id: "Demons_Days",
+        nazwa: "Demons Day",
+        cenaGrosze: 3299
+    }
+];
+
+const produkt = document.getElementById('produkt');
+const ilosc = document.getElementById('number');
+const cena = document.getElementById('cena');
+
+function wartoscGrosz(cenaGrosze, ilosc){
+    return cenaGrosze * ilosc;
+}
+
+function wartoscZloty(cenaGrosze){
+    const cenaZloty = cenaGrosze / 100;
+    const option = {
+        style: 'currency',
+        currency: 'PLN'
+    };
+    return new Intl.NumberFormat('pl-PL', option).format(cenaZloty);
+}
+
+function podglad(){
+    const wybraneID = produkt.value;
+    const wybranaIlosc = ilosc.value;
+    if(wybraneID === ""){
+        cena.textContent = "Wybierz produkt";
+        return;
+    }
+    const znalezionyProdukt = tablicaProduktów.find(prod => prod.id === wybraneID);
+    const walidacjaIlosci = Number(wybranaIlosc);
+    if(wybranaIlosc === "" || !Number.isInteger(walidacjaIlosci) || walidacjaIlosci < 1 || walidacjaIlosci > 5){
+        cena.textContent = "Wybierz liczbę od 1 do 5 (połówek nie sprzedajemy)";
+        return;
+    }
+    const wynikWGroszach = wartoscGrosz(znalezionyProdukt.cenaGrosze, walidacjaIlosci);
+    cena.textContent = "Wartość zamówienia: " + wartoscZloty(wynikWGroszach);
+}
+
+if(produkt){
+    produkt.addEventListener('change', podglad);
+    ilosc.addEventListener('input', podglad);
+}
