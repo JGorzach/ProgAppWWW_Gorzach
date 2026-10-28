@@ -83,7 +83,7 @@ wyszukiwanie.addEventListener('input', (event) =>{
 });
 }
 //Oblicz wartosc i pokaz podsumowanie
-const tablicaProduktów = [
+const tablicaProduktow = [
     {
         id: "The_Car",
         nazwa: "The Car",
@@ -125,7 +125,7 @@ function podglad(){
         cena.textContent = "Wybierz produkt";
         return;
     }
-    const znalezionyProdukt = tablicaProduktów.find(prod => prod.id === wybraneID);
+    const znalezionyProdukt = tablicaProduktow.find(prod => prod.id === wybraneID);
     const walidacjaIlosci = Number(wybranaIlosc);
     if(wybranaIlosc === "" || !Number.isInteger(walidacjaIlosci) || walidacjaIlosci < 1 || walidacjaIlosci > 5){
         cena.textContent = "Wybierz liczbę od 1 do 5 (połówek nie sprzedajemy)";
@@ -143,15 +143,32 @@ if(produkt){
 const formularz = document.getElementById('formularz');
 const wiadomosc = document.getElementById('wiadomosc');
 const bledyWiadomosci = document.getElementById('bledyWiadomosc');
+const podsumowanie = document.getElementById('podsumowanie');
 if(formularz){
 formularz.addEventListener('submit', (event) => {
     event.preventDefault();
     const wpisane = wiadomosc.value.trim();
     if(wpisane.length < 10){
         bledyWiadomosci.textContent = "Za krótka wiadomość. Min 10 znaków.";
+        podsumowanie.textContent = "";
         wiadomosc.focus();
         return;
     }
     bledyWiadomosci.textContent = "";
+    const wybraneID = produkt.value;
+    const wybranaIlosc = Number(ilosc.value);
+    const znalezionyProdukt = tablicaProduktow.find(prod => prod.id === wybraneID);
+    const wartoscWGroszach = wartoscGrosz(znalezionyProdukt.cenaGrosze, wybranaIlosc);
+    const kwotaWZloty = wartoscZloty(wartoscWGroszach);
+    podsumowanie.textContent = `
+    Podsumowanie:
+    Produkt: ${znalezionyProdukt.nazwa}
+    Ilość: ${wybranaIlosc}
+    Wartość: ${kwotaWZloty}
+    Wiadomość: ${wpisane}
+    `;
 });
+formularz.addEventListener('input', () => {
+    podsumowanie.textContent = " ";
+})
 }
