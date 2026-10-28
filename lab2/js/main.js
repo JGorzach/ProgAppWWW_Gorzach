@@ -24,10 +24,13 @@ function applyTheme(mode){
 }
 
 //zegar
-let zegar = null;
+
 const start = document.getElementById('start');
 const stop = document.getElementById('stop');
 let options = {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
     hour: "numeric",
     minute: "numeric",
     second: "numeric"
@@ -37,6 +40,7 @@ function piszCzas(){
     let d1 = new Intl.DateTimeFormat("pl-PL", options).format(d);
     document.getElementById("zegar").innerHTML= d1;
 }
+let zegar = setInterval(piszCzas,1000);
 function startZegar(){
     if(zegar === null){
         piszCzas();
@@ -134,4 +138,20 @@ function podglad(){
 if(produkt){
     produkt.addEventListener('change', podglad);
     ilosc.addEventListener('input', podglad);
+}
+
+const formularz = document.getElementById('formularz');
+const wiadomosc = document.getElementById('wiadomosc');
+const bledyWiadomosci = document.getElementById('bledyWiadomosc');
+if(formularz){
+formularz.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const wpisane = wiadomosc.value.trim();
+    if(wpisane.length < 10){
+        bledyWiadomosci.textContent = "Za krótka wiadomość. Min 10 znaków.";
+        wiadomosc.focus();
+        return;
+    }
+    bledyWiadomosci.textContent = "";
+});
 }
