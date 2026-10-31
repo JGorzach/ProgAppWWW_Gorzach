@@ -30,21 +30,27 @@ function unfocus2(){
     $("#button2").stop(true, false).animate({
         width: '160px',
         height: '90px'
-    },100);
+    },300);
 };
 $("#button2").on({mouseenter: focus2, mouseleave: unfocus2, focus: focus2, blur: unfocus2});
 
 //Animacja C
 let iloscButton3 = 0;
-let modWidth = 160;
-let modHeight = 90;
+const baseWidth = 160;
+const baseHeight = 90;
 const button3Amount = document.getElementById('button3Amount');
 function grow3(){
+    if($("#button3").is(":animated")){
+        return;
+    }
     if(iloscButton3 < 5){
         iloscButton3 += 1;
-        modWidth += 20;
-        modHeight += 10;
-        $("#button3").width(modWidth).height(modHeight);
+        const modWidth = baseWidth + (iloscButton3 * 20);
+        const modHeight = baseHeight + (iloscButton3 * 10);
+        $("#button3").animate({
+            width: modWidth,
+            height: modHeight
+        },300);
         button3Amount.textContent = `${iloscButton3}`;
     }
 };
