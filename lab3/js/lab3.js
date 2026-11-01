@@ -1,3 +1,10 @@
+//Ograniczenie ruchu
+$(function(){
+    const preferedReduceMotion = window.matchMedia('(prefers-reduce-motion: reduce').matches;
+    if(preferedReduceMotion){
+        $.fx.off = true;
+    }
+
 // Animacja A
 let jestMale = true;
 function grow1(){
@@ -56,7 +63,7 @@ function grow3(){
 };
 $("#button3").on("click", grow3);
 
-//Reset i ograniczenie ruchu
+//Reset
 function reset13(){
     jestMale = false;
     grow1();
@@ -64,3 +71,5 @@ function reset13(){
     grow3();
 }
 $("#buttonReset").on("click", reset13);
+
+});
