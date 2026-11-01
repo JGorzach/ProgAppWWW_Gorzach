@@ -1,6 +1,7 @@
 //Ograniczenie ruchu
 $(function(){
     const preferedReduceMotion = window.matchMedia('(prefers-reduce-motion: reduce').matches;
+    
     if(preferedReduceMotion){
         $.fx.off = true;
     }
@@ -34,6 +35,9 @@ function focus2(){
     },300);
 };
 function unfocus2(){
+    if($("#button2").is(":focus") || $("#button2").is(":hover")){
+        return;
+    }
     $("#button2").stop(true, false).animate({
         width: '160px',
         height: '90px'
