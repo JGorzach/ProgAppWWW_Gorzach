@@ -55,3 +55,12 @@ function grow3(){
     }
 };
 $("#button3").on("click", grow3);
+
+//Reset i ograniczenie ruchu
+function reset13(){
+    jestMale = false;
+    grow1();
+    iloscButton3 = -1;
+    grow3();
+}
+$("#buttonReset").on("click", reset13);
