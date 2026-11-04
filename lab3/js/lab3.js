@@ -76,4 +76,27 @@ function reset13(){
 }
 $("#buttonReset").on("click", reset13);
 
+//Wykonaj pierwsze żądanie AJAX
+function ajax(){
+    let $przycisk = $('#serwerButton');
+    let $status = $('#statusSerwera');
+    $przycisk.prop('disable', true);
+    $status.text('Ładowanie serera...');
+    $.ajax({
+        url:'status.php',
+        type: 'GET',
+        dataType: 'text',
+        timeout: 5000
+    })
+    .done(function(data){
+        $status.text(data);
+    })
+    .fail(function(jqXHR, textStatus, errorThrown){
+        $status.text('Błąd serwera: ' + textStatus + ' -- ' + (errorThrown || jqXHR.status));
+    })
+    .always(function(){
+        $przycisk.prop('disabled', false);
+    });
+};
+$("#serwerButton").on("click",ajax);
 });
